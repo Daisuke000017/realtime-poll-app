@@ -12,10 +12,6 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Loading } from '@/components/Loading';
 import { Check, BarChart3 } from 'lucide-react';
 
-export function generateStaticParams() {
-  return [];
-}
-
 export default function PollPage() {
   const params = useParams();
   const router = useRouter();
