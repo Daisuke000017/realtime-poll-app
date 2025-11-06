@@ -1,0 +1,47 @@
+{
+  "rules": {
+    "polls": {
+      "$pollId": {
+        ".read": true,
+        ".write": "!data.exists() || data.child('createdBy').val() === auth.uid",
+        "title": {
+          ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 100"
+        },
+        "description": {
+          ".validate": "newData.isString() && newData.val().length <= 500"
+        },
+        "type": {
+          ".validate": "newData.val() === 'single' || newData.val() === 'multiple'"
+        },
+        "status": {
+          ".validate": "newData.val() === 'active' || newData.val() === 'closed'"
+        },
+        "totalVotes": {
+          ".validate": "newData.isNumber() && newData.val() >= 0"
+        },
+        "options": {
+          "$optionId": {
+            "votes": {
+              ".validate": "newData.isNumber() && newData.val() >= 0"
+            }
+          }
+        }
+      }
+    },
+    "votes": {
+      "$pollId": {
+        "$userId": {
+          ".read": "auth.uid === $userId",
+          ".write": "auth.uid === $userId && !data.exists()",
+          ".validate": "newData.hasChildren(['optionId', 'votedAt', 'isAnonymous'])"
+        }
+      }
+    },
+    "userPolls": {
+      "$userId": {
+        ".read": "auth.uid === $userId",
+        ".write": "auth.uid === $userId"
+      }
+    }
+  }
+}
