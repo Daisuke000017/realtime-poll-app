@@ -10,6 +10,10 @@ import { RealtimeChart } from '@/components/RealtimeChart';
 import { ArrowLeft, Vote, Users, RefreshCw } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 
+export function generateStaticParams() {
+  return [];
+}
+
 export default function ResultsPage() {
   const params = useParams();
   const pollId = params.id as string;

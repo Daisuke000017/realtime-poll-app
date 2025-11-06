@@ -13,6 +13,10 @@ import { QRCodeDisplay } from '@/components/QRCodeDisplay';
 import { RealtimeChart } from '@/components/RealtimeChart';
 import { ArrowLeft, Trash2, Lock, Unlock, ExternalLink } from 'lucide-react';
 
+export function generateStaticParams() {
+  return [];
+}
+
 export default function AdminPage() {
   const params = useParams();
   const searchParams = useSearchParams();
